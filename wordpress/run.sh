@@ -1,9 +1,8 @@
 #!/bin/sh
 
-until mysql --host=db --user=bbordere --password=1234 -e '\d'; do
-  echo "Waiting mariadb ..."
-  sleep 1
-done
+/wait
+
+echo "127.0.0.1 bbordere.42.fr" >> /etc/hosts
 
 if ! wp --allow-root core is-installed; then
 

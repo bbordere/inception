@@ -29,8 +29,13 @@ RUN chmod +x wp-cli.phar; mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir -p /scripts
 COPY run.sh /scripts/run.sh
 COPY www.conf /etc/php7/php-fpm.d/www.conf
-RUN adduser -S nginx &&addgroup -S nginx
+RUN adduser -S nginx && addgroup -S nginx
 
 WORKDIR /var/www/html
 
-ENTRYPOINT [ "sh", "/scripts/run.sh"]
+RUN chmod +x /scripts/run.sh
+
+ADD	https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
+RUN chmod +x /wait
+
+ENTRYPOINT [ "sh", "-c", "/scripts/run.sh"]

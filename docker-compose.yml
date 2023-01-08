@@ -1,18 +1,6 @@
 version: "3.9"
 
 services:
-  nginx:
-    build: nginx/
-    container_name: nginx
-    ports:
-      - "443:443"
-    volumes:
-      - wp-data:/var/www/html
-    restart: always
-    networks:
-      - inception_net
-    depends_on:
-      - wp
 
   db:
     build: db/
@@ -36,7 +24,24 @@ services:
       - wp-data:/var/www/html
     depends_on:
       - db
+    environment:
+      - WAIT_HOSTS=db:3306
     restart: always
+
+  nginx:
+    build: nginx/
+    container_name: nginx
+    ports:
+      - "443:443"
+    volumes:
+      - wp-data:/var/www/html
+    restart: always
+    networks:
+      - inception_net
+    depends_on:
+      - wp
+    environment:
+      - WAIT_HOSTS=wp:9000
 
 networks:
   inception_net:

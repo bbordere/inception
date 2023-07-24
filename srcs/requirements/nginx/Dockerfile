@@ -12,10 +12,10 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 ADD	https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
 RUN chmod +x /wait
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/default.conf /etc/nginx/conf.d/default.conf
 
-COPY run.sh /scripts/run.sh
+COPY tools/run.sh /scripts/run.sh
 
 # ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 ENTRYPOINT [ "sh", "/scripts/run.sh" ]

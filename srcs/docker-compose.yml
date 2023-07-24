@@ -7,7 +7,7 @@ services:
     build:
       context: requirements/mariadb
       dockerfile: Dockerfile
-    image: mariadb-inception:1.0
+    image: mariadb:1.0
     env_file:
       - .env
     networks:
@@ -21,7 +21,7 @@ services:
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
-    image: wordpress-inception:1.0
+    image: wordpress:1.0
     env_file:
       - .env
     networks:
@@ -39,7 +39,7 @@ services:
     build:
       context: requirements/nginx
       dockerfile: Dockerfile
-    image: nginx-inception:1.0
+    image: nginx:1.0
     ports:
       - "443:443"
     volumes:

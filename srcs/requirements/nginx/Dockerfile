@@ -17,5 +17,4 @@ COPY conf/default.conf /etc/nginx/conf.d/default.conf
 
 COPY tools/run.sh /scripts/run.sh
 
-# ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
 ENTRYPOINT [ "sh", "/scripts/run.sh" ]
